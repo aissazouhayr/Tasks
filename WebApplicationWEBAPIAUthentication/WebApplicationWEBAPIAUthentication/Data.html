@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.js"></script>
+
+
+</head>
+<body>
+
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="well">
+            Tsak Details<a  id="logOff"class="btn btn-success pull-right text-center" href="Login.html"><span class="text-muted" id="loggedName"></span>Logout</a>
+        </div>
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <!--<tr class="success">
+                      
+                        <td>Tsak Details<a class="btn btn-success pull-right" href="Login.html">Logout</a></td>
+                        
+                    </tr>
+                    <tr>-->
+                        <th>Quote Type</th>
+                        <th>Quote </th>
+                        <th>Contact</th>
+                        <th>Task</th>
+                        <th>Task Type</th>
+                    </tr>
+                </thead>
+                 
+                <tbody id="TaskBody" >
+                
+
+                </tbody>
+            </table>
+            <div id="DivError" class="alert alert-danger collapse">
+                <a hret="#" id="LinkClose" class="close">&times;</a>
+                <div id="DivErrorText"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#logOff").click(function () {
+                localStorage.removeItem('userName');
+                localStorage.removeItem('acessToken');
+                 window.location.href = "Login.html";
+
+
+            });
+               if(localStorage.getItem('acessToken') ==null) {
+                window.location.href = "Login.html";
+            };
+            $("#loggedName").text(localStorage.getItem('userName')+" ");
+            $("#LinkClose").click(function () {
+               // console.log("close");
+                $("#DivError").hide('fade');
+            });
+
+        //    $("#btnlogin").click(function () {
+              console.log(localStorage.getItem('acessToken'));
+            $.ajax({           
+                url:'/api/Task',
+                 method: 'Get',
+               //     contentType: 'application/json',
+             //     headers: {'Authorization': 'Bearer '+ localStorage.getItem('acessToken')},                                 
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader ('Authorization', 'Bearer ' + localStorage.getItem('acessToken') );
+                },
+                success: function (response) {
+                    console.log(JSON.stringify(response));
+                    $.each(response, function (index, value) {
+
+                        $("#TaskBody").append(`<tr>
+                                              <td>${value.QuoteType}</td >
+                                               <td>${value.Quote}</td >
+                                               <td>${value.Contact}</td >
+                                                <td>${value.Task1}</td >
+                                               <td>${value.TaskType}</td > 
+                                            </tr> `);
+
+                    });
+
+                     //  $("#DivErrorText").text(JSON.stringify(response));
+                    //   $("#DivError").show('fade');
+
+                  //  localStorage.setItem("acessToken",response.access_token);
+                 //   window.location.href = "Data.html";
+                       // console.log("yesssssssssssssss"+response.access_token);
+                },
+                error: function (JqXHR) {
+                    console.log("No");
+                    $("#DivErrorText").text(JqXHR.responseText);
+                    $("#DivError").show('fade');
+                }
+
+
+            })
+
+
+
+          //  });
+
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+
+
+ <h2 mat-dialog-title>Create Task</h2>
+<mat-dialog-content>
+    Do you wish to continue previous shopping?
+     <mat-card class="my-card" >
+        <mat-card-content>
+             
+          <!-- CONTENT HERE -->
+    <form class="my-form"  [formGroup]="taskForm">
+              
+    <mat-form-field class="full-width">
+        <mat-label>Quote</mat-label>
+        <input   formControlName="Quote"  matInput  placeholder="Quote" name="Quote">
+        <mat-error *ngIf="!taskForm.controls.Quote?.valid">Quote task is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>QuoteType</mat-label>
+        <input matInput formControlName="QuoteType"   placeholder="QuoteType"  name="QuoteType">
+        <mat-error *ngIf="!taskForm.controls.QuoteType?.valid">QuoteType task is required</mat-error>
+
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Contact</mat-label>
+        <input   matInput formControlName="Contact" type="Contact" placeholder="Contact"  name="Contact">
+        <mat-error *ngIf="!taskForm.controls.Contact?.valid">Contact task is required</mat-error>
+
+      </mat-form-field>
+      <mat-form-field class="full-width">
+          <mat-label>Task</mat-label>
+          <input   matInput formControlName="Task1"  placeholder="Task "  name="Task1">
+          <mat-error *ngIf="!taskForm.controls.Task1?.valid">task is required</mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>TaskType</mat-label>
+            <input   matInput formControlName="TaskType"  placeholder="Task "  name="TaskType">
+            <mat-error *ngIf="!taskForm.controls.TaskType?.valid">TaskType is required</mat-error>
+
+          </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>DateDue</mat-label>
+        <input matInput  [matDatepicker]="picker"    formControlName="DateDue" placeholder="Choose a date">
+        <mat-error *ngIf="!taskForm.controls.DateDue?.valid">DateDue is required</mat-error>
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+         </form>
+        </mat-card-content>
+      
+      </mat-card>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+<button mat-button [mat-dialog-close]="false">Cancel</button>
+<!--— The mat-dialog-close directive optionally accepts a value as a result for the dialog.-->
+<button [disabled]="!taskForm.valid" mat-button [mat-dialog-close]="taskForm" style="color:blue">Submit</button>
+<mat-error *ngIf="!taskForm.valid">* All Fields are required</mat-error>
+
+</mat-dialog-actions> 

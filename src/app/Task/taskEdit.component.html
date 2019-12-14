@@ -1,0 +1,135 @@
+ <!--
+ 
+ <form class="form-horizontal" [formGroup]="taskForm" (ngSubmit)="OnTaskEditSubmit()">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Update Task</h3>
+          </div>
+           
+          <div class="panel-body">
+                <div class="form-group">
+                        <label class="col-sm-2 control-label" for="Contact">Quote</label>
+                        <div class="col-sm-8">
+                          <input id="Quote" type="text" [ngModel]="task.Quote" class="form-control" formControlName="Quote">
+                        </div>
+                     </div>
+                
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="Contact">Contact</label>
+              <div class="col-sm-8">
+                <input id="Contact" type="text" [ngModel]="task.Contact" class="form-control" formControlName="Contact">
+              </div>
+           </div>
+      
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="QuoteType">QuoteType</label>
+              <div class="col-sm-8">
+                <input id="QuoteType" [ngModel]="task.QuoteType" type="text" class="form-control" formControlName="QuoteType">
+              </div>
+            </div>
+            <div class="form-group">
+                  <label class="col-sm-2 control-label" for="email">TaskType</label>
+                  <div class="col-sm-8">
+                    <input [ngModel]="task.TaskType" id="TaskType" type="text" class="form-control" formControlName="TaskType">
+                  </div>
+            </div>
+      
+         
+          <div class="form-group">
+                  <label class="col-sm-2 control-label" for="Task">Task</label>
+                  <div class="col-sm-8">
+                    <input [ngModel]="task.Task1" id="Task" type="text" class="form-control" formControlName="Task1">
+                  </div>
+                </div>
+      
+      
+          <div class="form-group">
+                  <label class="col-sm-2 control-label" for="DateDue">DateDue</label>
+                  <div class="col-sm-8">
+                    <input [ngModel]="task.DateDue" id="DateDue" type="text" class="form-control" formControlName="DateDue">
+                  </div>
+         </div>
+      
+          </div>
+          <div class=" well panel-footer">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button (click)="onBackToTaskListClick()" class="btn btn-primary float-right">Back to Task List</button>
+          </div>
+          </div>
+      </form>
+      
+      
+      <div id="DivError" class="alert alert-danger collapse" >
+              <a hret="#" id="LinkClose" class="close">&times;</a>
+              <div id="DivErrorText" ></div>
+       </div>  -->
+
+
+<!--##########################################-->
+
+       <mat-toolbar>
+        <span>Edit Task</span>
+        <span class="spacer"></span>
+          <a mat-button routerLink="/taskList" color="primary">Back To Tasks List</a>
+      
+      </mat-toolbar>
+      <mat-card class="my-card" >
+        <mat-card-content>
+             
+          <!-- CONTENT HERE -->
+    <form class="my-form"  [formGroup]="taskForm">
+              
+      <mat-form-field class="full-width">
+        <mat-label>Quote</mat-label>
+        <input [ngModel]="task.Quote"  formControlName="Quote"  matInput  placeholder="Quote" name="Quote">
+        <mat-error *ngIf="!taskForm.controls.Quote?.valid">quote task is required</mat-error>
+      </mat-form-field>
+      <!-- <div NgIf="!taskForm.controls.Quote?.valid">
+          <div [hidden]="!taskForm.controls.Quote.errors.required"> task Quote is  required</div>
+
+      </div> -->
+    <mat-form-field class="full-width">
+        <mat-label>QuoteType</mat-label>
+        <input [ngModel]="task.QuoteType"  matInput formControlName="QuoteType"   placeholder="QuoteType"  name="QuoteType">
+        <mat-error *ngIf="!taskForm.controls.QuoteType?.valid">QuoteType task is required</mat-error>
+
+      </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Contact</mat-label>
+        <input [ngModel]="task.Contact"  matInput formControlName="Contact" type="Contact" placeholder="Contact"  name="Contact">
+        <mat-error *ngIf="!taskForm.controls.Contact?.valid">Contact task is required</mat-error>
+
+      </mat-form-field>
+      <mat-form-field class="full-width">
+          <mat-label>Task</mat-label>
+          <input [ngModel]="task.Task1"  matInput formControlName="Task1"  placeholder="Task "  name="Task1">
+          <mat-error *ngIf="!taskForm.controls.Task1?.valid">Task1 task is required</mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>TaskType</mat-label>
+            <input [ngModel]="task.TaskType"  matInput formControlName="TaskType"  placeholder="Task "  name="TaskType">
+            <mat-error *ngIf="!taskForm.controls.TaskType?.valid">TaskType task is required</mat-error>
+
+          </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>{{task.DateDue}}</mat-label>
+        <input matInput  [matDatepicker]="picker" [ngModel]="task.DateDue"     formControlName="DateDue" placeholder="Choose a date">
+        <mat-error *ngIf="!taskForm.controls.DateDue?.valid">DateDue task is required</mat-error>
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+         </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- REGISTER BUTTON -->
+          <button mat-raised-button  (click)="OnTaskEditSubmit()" type="submit"  color="primary">Edit Task</button>
+      
+        </mat-card-actions>
+      </mat-card>
+      
+      
+      
+      

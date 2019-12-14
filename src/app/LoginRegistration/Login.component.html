@@ -1,0 +1,68 @@
+
+<!-- <form class="form-horizontal" [formGroup]="LoginForm" (ngSubmit)="OnLoginSubmit()">
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <th colspan="2">
+                             Login User
+                            <a class="btn btn-success float-right">Register</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>User Name</td>
+                        <td><input  formControlName="username" type="text" id="txtName" placeholder="userName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input  formControlName="password" type="password" id="txtPassword" placeholder="Password" /></td>
+                    </tr>
+                
+                    <tr class="success">
+     
+                     <td colspan="2"> <input  class="btn btn-success" type="submit"id="btnlogin" value="Login" /></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div id="DivError" class="alert alert-danger collapse" >
+                <a hret="#" id="LinkClose" class="close">&times;</a>
+                <div id="DivErrorText" ></div>
+            </div>
+        </div>
+    </div>
+
+</form> -->
+
+    
+ 
+
+
+
+ <mat-toolbar>
+    <span>LOGIN</span>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/Register" color="primary">Register</a>
+
+
+  </mat-toolbar>
+  <mat-card class="my-card">
+     <mat-card-content>
+        <form class="my-form" [formGroup]="LoginForm" > 
+           <mat-form-field class="full-width">
+              <mat-label>Email</mat-label>
+              <input formControlName="username" matInput  placeholder="Email" name="email">
+           </mat-form-field>
+           <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input formControlName="password"  matInput type="password" placeholder="Password" name="password">
+           </mat-form-field>
+        </form>
+     </mat-card-content>
+     <mat-card-actions>
+        <button mat-raised-button (click)="OnLoginSubmit()"  type="submit" color="primary">LOGIN</button>
+     </mat-card-actions>
+  </mat-card>

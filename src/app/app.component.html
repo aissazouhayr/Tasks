@@ -1,0 +1,40 @@
+
+ <app-layout>
+
+  <!-- <TaskList></TaskList>
+  <taskCreate></taskCreate> -->
+
+   <!-- <div class="container">
+    <div class="row">
+            <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
+                        <li >
+                            <a class="navbar-nav float-right"  outerLinkActive="active" routerLink="/">Home</a>
+                        </li>
+                        <li class="float-right">
+                            <a routerLinkActive="active" routerLink="Login">Login</a>
+                        </li>
+                    </ul>
+                </nav>
+    </div> </div> 
+   -->
+   
+     
+    <mat-toolbar  color="primary">
+          <mat-toolbar-row>
+            <!--  <span>HOME</span> -->
+            <span><a routerLink="/Home">HOME</a></span>
+            <span class="spacer"></span>
+            <a mat-button routerLink="/"   *ngIf="LoggedIn()">{{"User: "+user}}</a>
+            <a mat-button routerLink="/" *ngIf="LoggedIn()" (click)="OnLogOutClick()">Log out</a>
+            <a mat-button routerLink="/Login"  *ngIf="!LoggedIn()" >Login</a>
+          </mat-toolbar-row>
+     </mat-toolbar>
+      <router-outlet></router-outlet>
+
+  
+
+</app-layout>
+
+
+

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.js"></script>
+
+
+</head>
+<body>
+
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="well">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <th colspan="2">Login User<a class="btn btn-success pull-right" href="Register.html">Register</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>User Name</td>
+                        <td><input type="text" id="txtName" placeholder="userName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" id="txtPassword" placeholder="Password" /></td>
+                    </tr>
+                
+                    <tr class="success">
+     
+                     <td colspan="2"> <input  class="btn btn-success" type="button" id="btnlogin" value="Login" /></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div id="DivError" class="alert alert-danger collapse" >
+                <a hret="#" id="LinkClose" class="close">&times;</a>
+                <div id="DivErrorText" ></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#LinkClose").click(function () {
+               // console.log("close");
+                $("#DivError").hide('fade');
+            });
+
+            $("#btnlogin").click(function () {
+                $.ajax({
+                url:'/token',
+                 method: 'Post',
+                contentType: 'application/json',
+              
+                data: {
+                    username: $("#txtName").val(),
+                    password: $("#txtPassword").val(),
+                    grant_type:'password'
+                },
+                success: function (response) {
+                  //  console.log(JSON.stringify(response));
+                    
+                     //  $("#DivErrorText").text(JSON.stringify(response));
+                    //  $("#DivError").show('fade');
+                
+                    localStorage.setItem("acessToken", response.access_token);
+                    var name = JSON.stringify(response.userName).split('@');
+                    console.log("ssssssssssssssssssssssssssssssssssssssssss"+ name[0].substr(1, name[0].length));
+                     localStorage.setItem("userName", name[0].substr(1, name[0].length));
+                    window.location.href = "Data.html";
+                       // console.log("yesssssssssssssss"+response.access_token);
+                },
+                error: function (JqXHR) {
+                    console.log("No");
+                    $("#DivErrorText").text(JqXHR.responseText);
+                    $("#DivError").show('fade');
+                }
+
+
+            })
+
+
+
+            });
+
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+      
+      
+      
+      <mat-grid-list cols="4" rowHeight="4rem"  >
+        <mat-grid-tile class="taskdtailsHedaer"  [colspan]="4" >
+            <!-- <nav>
+                <a routerLink="/createTask" routerLinkActive="active">Add Task</a>
+            
+              </nav> -->
+              <label mat-raised-button class="tasketailsLabel">
+                    Tasks Details
+              </label>  
+    
+              <span class="spacer"></span>
+              <button lg-direction="right" mat-raised-button (click)="openModal()">
+                    <mat-icon >add</mat-icon>Add Task</button>
+
+              <!-- <span class="fill-space"></span> -->
+
+            
+              <!-- <button lg-direction="right" mat-raised-button color="primary" (click)="OnCreateTaskBtnClick()">Add Task</button> -->
+
+        </mat-grid-tile>
+               <mat-grid-tile   [colspan]="4" (window:resize)="onResize($event)" [rowspan]="Rowspan"  class="SearchNavbar" >
+                  <div  >
+                        <span>Show: </span>
+                  
+                        <mat-form-field  class="showList" id='Showpages' appearance="outline" floatLabel="never" >
+                              <!-- <mat-label >Order By</mat-label> -->
+                             <select id="showSelect" matNativeControl [(ngModel)]="selectedNumber" (change)="ShowvalueSelected()">
+                             <option value="3" >3</option>
+                             <option  value="5">5</option>
+                             <option value="10">10</option>         
+                             
+                             </select>
+                         </mat-form-field> 
+                  </div>
+                <div id ="OrderByfilterDiv" >
+                        <span>Order By: </span>
+                        <mat-form-field id='OrderByfilter' appearance="outline"  floatLabel="never" >
+                         
+                        <select matNativeControl [(ngModel)]="selectedColumn" (change)="valueSelected()">
+                        <option [(value)]="selectedColumn" value="ContactName" >ContactName</option>
+                        <option value="Quote">Quote</option>
+                        <option value="QuoteType">QuoteType</option>         
+                        <option value="Task">Task</option>
+                        </select>
+                    </mat-form-field> 
+                    <section class="checkbox-section">
+                            <mat-checkbox class="checkBobx-margin" [(ngModel)]="checked">Descendant</mat-checkbox>
+                    </section>
+                
+                 </div>
+                
+                <div class="searchDiv ">
+                <label mat-raised-button class="serachLabel">
+                            Search:
+                </label>  
+                <mat-form-field class="search-form-field"  appearance="outline" floatLabel="never" >
+                    <input  matInput [(ngModel)]="searchKey"  placeholder="Search" (keyup)="applyFilter()" autocomplete="on"/>
+                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()" >
+                            <mat-icon>close</mat-icon>
+                    </button>  
+                </mat-form-field>
+                </div>
+                </mat-grid-tile>
+  
+        
+      </mat-grid-list>  
+
+
+
+
+
+
+      
+     
+      
+<div class="course">
+    <div class="spinner-container" *ngIf="!TaskList">
+      <mat-spinner></mat-spinner>
+</div>  
+<mat-table  class="lessons-table mat-elevation-z8"  [dataSource]="TaskList"   matSort>
+  
+  <ng-container matColumnDef="Quote">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Quote</mat-header-cell>
+      <mat-cell *matCellDef="let task">{{task.Quote}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="QuoteType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>QuoteType</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let task">{{task.QuoteType}}</mat-cell>
+
+  </ng-container>
+
+  <ng-container matColumnDef="Contact">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header>Contact</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let task">{{task.Contact}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="DueDate">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header>DueDate</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let task">{{task.DateDue| date}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Task">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header>Task</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let task">{{task.Task1}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Actions">
+      <mat-header-cell  *matHeaderCellDef></mat-header-cell>    
+      <mat-cell class="duration-cell"
+                *matCellDef="let row">
+                <button mat-icon-button (click)="onEditIconTaskClick(row)" ><mat-icon >launch</mat-icon></button>
+                <button mat-icon-button (click)="DeleteTask(row.Quote)" color="warn" ><mat-icon>delete_outline</mat-icon></button>
+
+            </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <!-- <mat-row  *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row> -->
+  <mat-row  *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+
+</mat-table>
+
+<mat-paginator  [pageSize]="selectedNumber" 
+[pageSizeOptions]="[3, 5, 10]" showFirstLastButtons>
+</mat-paginator> 
+
+
+
+
+
+
+
+
+
+
+
+

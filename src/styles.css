@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+
+	
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.paginationLoader{
+    display:flex;
+    justify-content: center;
+}
+
+
+.SearchNavbar{  
+    border: 1px solid lightgrey;
+}
+#OrderByfilterDiv{
+    display:inline-block;
+}
+
+.checkbox-section{
+    display:inline-block;
+    padding-top:7px;
+   
+}
+.checkBobx-margin{
+    margin-left: 5px;
+}
+.searchDiv{
+    margin-left:20px;
+   
+  
+
+}
+.serachLabel{
+    margin-right:15px;
+    margin-bottom:9px;
+}
+
+/*######################## REGISTER STYLES ############*/
+.spacer {
+    flex: 1 1 auto;
+    /* margin-right:150px; */
+  }
+
+  .my-form{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+   
+  .full-width {
+    width: 100%;
+  }
+
+  /*######################## END OF REGISTER STYLES ############*/
+
+
+
+

@@ -1,0 +1,50 @@
+.mat-raised-button:not([class*=mat-elevation-z]) {
+    margin-right: 5px;
+    margin-bottom:6px;
+    background-color:rgb(26, 187, 26);
+    color:white;
+    appearance: fill;
+}
+ .taskdtailsHedaer{
+    max-height: 33px;
+    
+    background-color:rgb(241, 236, 236);
+    
+}
+.tasketailsLabel{
+    color:rgb(37, 37, 192);
+    margin-left: 10px;
+    padding-top:3px;
+
+}
+.showpagesInput{
+    width:20px;
+    height: auto;
+}
+
+
+
+::ng-deep .mat-form-field.showList  {
+  
+    width: 65px;
+
+}
+::ng-deep .mat-form-field#OrderByfilter  {
+ 
+    width: 115px;
+  /* border:1px solid black; */
+}
+
+::ng-deep mat-grid-tile.mat-grid-tile .mat-figure  {
+    top: 0;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 130%;
+    padding: 0px;
+    margin: 0;
+}
