@@ -3,5 +3,5 @@ Task is task management app that allow user to edit, check, create and delete ta
 #taskimage
 ##taskimage  
 
-![alt text](https://github.com/aissazouhayr/Tasks/issues/1)
+[alt text](https://github.com/aissazouhayr/Tasks/issues/1)
 <img src=taskimage></img>
